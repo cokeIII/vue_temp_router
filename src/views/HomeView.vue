@@ -1,18 +1,75 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <center>
+      <table border="1">
+        <tr>
+          <td>
+            <h1>Numbers Survival</h1>
+            <h4>Lv. {{ Lv }} ช่วง 1 - {{ 50 * Lv }} คะแนน {{ score }}</h4>
+            <h4>Hp: {{ Hp }}</h4>
+            <input type="number" v-model="number">
+            <button @click="actNumber">OK</button>
+            <h4>{{ status }}</h4>
+          </td>
+          <td>
+            <h4>Shop</h4>
+            <h5>red potion : - 80 Score</h5>
+            <input type="number" v-model="Item1">
+            <h5>number potion : - 70 Score</h5>
+            <input type="number" v-model="Item2">
+            <br>
+            <br>
+            <button @click="buy">Buy</button>
+          </td>
+        </tr>
+      </table>
+    </center>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+  },
+  data() {
+    return {
+      number: 0,
+      ans: Math.ceil(Math.random() * 50),
+      status: "comeon !!!",
+      score: 0,
+      Lv: 1,
+      Hp: 100,
+      Item1: 0,
+      Item2: 0,
+    };
+  },
+  methods: {
+    actNumber() {
+      if (this.number > this.ans) {
+        this.score -= this.Lv
+        this.Hp -= (2 * this.Lv)
+        this.status = "มากกว่านะครับ กรุณาลดค่าตัวเลข"
+      } else if (this.number < this.ans) {
+        this.score -= this.Lv
+        this.Hp -= (2 * this.Lv)
+        this.status = "น้อยกว่านะครับ กรุณาเพิ่มค่าตัวเลข"
+      } else {
+        this.Lv++
+        this.ans = Math.ceil(Math.random() * (50 * this.Lv))
+        this.score += 20 * this.Lv
+        this.status = "ถูกต้องแล้วครับ"
+      }
+    },
+    buy() {
+      if(this.score >= ((this.Item1*80)+(this.Item2*70))){
+        this.score-=(this.Item1*80)+(this.Item2*70)
+        this.Hp+=(25*this.Item1)
+        this.ans = Math.ceil(Math.random() * (50 * this.Lv)-(20*this.Item2))
+      }
+    }
   }
+
 }
 </script>
