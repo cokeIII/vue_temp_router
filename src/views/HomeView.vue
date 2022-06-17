@@ -5,7 +5,7 @@
         <tr>
           <td>
             <h1>Numbers Survival</h1>
-            <h4>Lv. {{ Lv }} ช่วง 1 - {{ 50 * Lv }} คะแนน {{ score }}</h4>
+            <h4>Lv. {{ Lv }} ช่วง 1 - {{ 50 * Lv-Stack }} คะแนน {{ score }}</h4>
             <h4>Hp: {{ Hp }}</h4>
             <input type="number" v-model="number">
             <button @click="actNumber">OK</button>
@@ -43,6 +43,7 @@ export default {
       Hp: 100,
       Item1: 0,
       Item2: 0,
+      Stack: 0,
     };
   },
   methods: {
@@ -66,7 +67,9 @@ export default {
       if(this.score >= ((this.Item1*80)+(this.Item2*70))){
         this.score-=(this.Item1*80)+(this.Item2*70)
         this.Hp+=(25*this.Item1)
-        this.ans = Math.ceil(Math.random() * (50 * this.Lv)-(20*this.Item2))
+        this.Stack+= 20*this.Item2
+        this.ans = Math.ceil(Math.random() * (50 * this.Lv)-this.Stack)
+        
       }
     }
   }
