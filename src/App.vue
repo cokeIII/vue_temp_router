@@ -1,9 +1,18 @@
+
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="">
+    <div class="container p-3">
+      <div class="card shadow">
+        <div class="card-body">
+          <nav>
+            <router-link to="/">Home</router-link> |
+            <router-link to="/tab_monters">Tab Monters</router-link>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <router-view />
+  </div>
 </template>
 
 <style>
@@ -26,5 +35,14 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.bg {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("~@/assets/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 </style>

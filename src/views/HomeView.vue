@@ -1,29 +1,39 @@
-<template>
+<template >
   <div class="home">
-    <center>
-      <table border="1">
-        <tr>
-          <td>
-            <h1>Numbers Survival</h1>
-            <h4>Lv. {{ Lv }} ช่วง 1 - {{ 50 * Lv-Stack }} คะแนน {{ score }}</h4>
-            <h4>Hp: {{ Hp }}</h4>
-            <input type="number" v-model="number">
-            <button @click="actNumber">OK</button>
-            <h4>{{ status }}</h4>
-          </td>
-          <td>
-            <h4>Shop</h4>
-            <h5>red potion : - 80 Score</h5>
-            <input type="number" v-model="Item1">
-            <h5>number potion : - 70 Score</h5>
-            <input type="number" v-model="Item2">
-            <br>
-            <br>
-            <button @click="buy">Buy</button>
-          </td>
-        </tr>
-      </table>
-    </center>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-6">
+          <div class="card shadow">
+            <div class="card-header">
+              <h1>Numbers Survival</h1>
+            </div>
+            <div class="card-body">
+              <h4>Lv. {{ Lv }} ช่วง 1 - {{ 50 * Lv - Stack }} คะแนน {{ score }}</h4>
+              <h4>Hp: {{ Hp }}</h4>
+              <input type="number" v-model="number">
+              <button @click="actNumber">OK</button>
+              <h4>{{ status }}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow">
+            <div class="card-header">
+              <h1> <img src="~@/assets/shop.png" alt="" class="shop-logo shadow"> Shop</h1>
+            </div>
+            <div class="card-body">
+              <h5>red potion : - 80 Score</h5>
+              <input type="number" v-model="Item1">
+              <h5>number potion : - 70 Score</h5>
+              <input type="number" v-model="Item2">
+              <br>
+              <br>
+              <button @click="buy">Buy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -64,15 +74,21 @@ export default {
       }
     },
     buy() {
-      if(this.score >= ((this.Item1*80)+(this.Item2*70))){
-        this.score-=(this.Item1*80)+(this.Item2*70)
-        this.Hp+=(25*this.Item1)
-        this.Stack+= 20*this.Item2
-        this.ans = Math.ceil(Math.random() * (50 * this.Lv)-this.Stack)
-        
+      if (this.score >= ((this.Item1 * 80) + (this.Item2 * 70))) {
+        this.score -= (this.Item1 * 80) + (this.Item2 * 70)
+        this.Hp += (25 * this.Item1)
+        this.Stack += 20 * this.Item2
+        this.ans = Math.ceil(Math.random() * (50 * this.Lv) - this.Stack)
+
       }
     }
   }
 
 }
 </script>
+<style>
+  .shop-logo{
+    width: 100px;
+    height: auto;
+  }
+</style>
